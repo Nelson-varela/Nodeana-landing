@@ -75,8 +75,8 @@ export function NeuralBackground({ dim = 1 }: { dim?: number }) {
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
             ctx.strokeStyle = usePurple
-              ? `rgba(196,181,253,${opacity})`
-              : `rgba(103,214,255,${opacity})`;
+              ? `rgba(167,139,250,${opacity})`
+              : `rgba(34,211,238,${opacity})`;
             ctx.lineWidth = t * 1.2;
             ctx.stroke();
           }
@@ -84,14 +84,14 @@ export function NeuralBackground({ dim = 1 }: { dim?: number }) {
       }
 
       // Nodes — shadowBlur instead of radialGradient (much cheaper)
-      ctx.shadowColor = 'rgba(125, 211, 252, 0.8)';
+      ctx.shadowColor = 'rgba(34, 211, 238, 0.9)';
       for (const n of nodes) {
         const pulse = 0.55 + 0.45 * Math.sin(n.pulsePhase);
         const coreOpacity = (0.65 + 0.35 * pulse) * d;
         ctx.shadowBlur = n.radius * 8 * pulse * d;
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(145,225,255,${coreOpacity})`;
+        ctx.fillStyle = `rgba(34,211,238,${coreOpacity})`;
         ctx.fill();
       }
       ctx.shadowBlur = 0;

@@ -8,7 +8,7 @@ export function Hero() {
 
   return (
     <section className="hero section" id="top">
-      <NeuralBackground />
+      <NeuralBackground dim={0.5} />
       <div className="container hero-grid">
         <div className="hero-content">
           <div className="eyebrow">{t.hero.eyebrow}</div>

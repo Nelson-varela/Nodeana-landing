@@ -1,16 +1,16 @@
 :root {
-  --bg: #07111f;
-  --bg-soft: #0c1728;
-  --surface: rgba(255, 255, 255, 0.06);
-  --surface-strong: rgba(255, 255, 255, 0.1);
-  --border: rgba(255, 255, 255, 0.12);
-  --text: #f5f7fb;
-  --muted: #afbdd3;
-  --primary: #7dd3fc;
-  --accent: #c4b5fd;
-  --success: #9ae6b4;
-  --danger: #feb2b2;
-  --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  --bg: #030b14;
+  --bg-soft: #060f1c;
+  --surface: rgba(255, 255, 255, 0.05);
+  --surface-strong: rgba(255, 255, 255, 0.09);
+  --border: rgba(255, 255, 255, 0.1);
+  --text: #f0f6ff;
+  --muted: #7fa8c4;
+  --primary: #22d3ee;
+  --accent: #a78bfa;
+  --success: #34d399;
+  --danger: #f87171;
+  --shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
   --radius: 24px;
   --container: 1180px;
 }
@@ -27,9 +27,9 @@ body {
   margin: 0;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background:
-    radial-gradient(circle at top left, rgba(125, 211, 252, 0.18), transparent 30%),
-    radial-gradient(circle at top right, rgba(196, 181, 253, 0.16), transparent 28%),
-    linear-gradient(180deg, #07111f 0%, #091421 45%, #050c16 100%);
+    radial-gradient(ellipse at top left, rgba(6, 182, 212, 0.12), transparent 40%),
+    radial-gradient(ellipse at bottom right, rgba(8, 145, 178, 0.08), transparent 45%),
+    linear-gradient(180deg, #030b14 0%, #050d18 50%, #020a12 100%);
   color: var(--text);
 }
 
@@ -263,17 +263,18 @@ main section:first-child {
   scroll-margin-top: 120px;
 
   background:
-    radial-gradient(circle at 82% 16%, rgba(104, 228, 255, 0.16), transparent 22%),
-    radial-gradient(circle at 68% 34%, rgba(72, 185, 222, 0.13), transparent 30%),
-    radial-gradient(circle at 45% 56%, rgba(28, 78, 128, 0.18), transparent 42%),
+    radial-gradient(ellipse at 90% 10%, rgba(6, 182, 212, 0.28), transparent 38%),
+    radial-gradient(ellipse at 70% 60%, rgba(8, 145, 178, 0.18), transparent 40%),
+    radial-gradient(ellipse at 20% 80%, rgba(2, 40, 70, 0.3), transparent 45%),
     linear-gradient(
-      90deg,
-      #020b16 0%,
-      #071726 16%,
-      #0c2540 38%,
-      #123f59 64%,
-      #18697a 84%,
-      #3bb6cf 100%
+      115deg,
+      #010810 0%,
+      #030d1a 18%,
+      #041525 35%,
+      #062238 55%,
+      #083656 72%,
+      #0a5272 86%,
+      #0891b2 100%
     );
 }
 
@@ -433,11 +434,15 @@ main section:first-child {
   padding: 0.9rem 1.2rem;
   border-radius: 999px;
   border: 1px solid transparent;
-  background: linear-gradient(135deg, var(--primary), var(--accent));
-  color: #07111f;
+  background: linear-gradient(135deg, #06b6d4, #0891b2);
+  color: #ffffff;
   font-weight: 700;
-  box-shadow: var(--shadow);
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  box-shadow: 0 8px 32px rgba(6, 182, 212, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button:hover {
+  box-shadow: 0 12px 40px rgba(6, 182, 212, 0.5);
 }
 
 .button:hover {
@@ -496,7 +501,7 @@ h1 {
 }
 
 h1 span {
-  background: linear-gradient(135deg, #7dd3fc, #dff7ff);
+  background: linear-gradient(135deg, #22d3ee, #67e8f9);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -972,15 +977,15 @@ textarea {
   right: 0;
   bottom: 0;
   width: min(320px, 85vw);
-  z-index: 999;
+  z-index: 1001;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 2.5rem;
-  padding: 2rem;
+  padding: 90px 2rem 2rem;
 
-  background: rgba(7, 17, 31, 0.97);
+  background: rgba(3, 11, 20, 0.98);
   border-left: 1px solid rgba(255,255,255,0.08);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
