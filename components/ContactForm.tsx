@@ -1,16 +1,19 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { NeuralBackground } from './NeuralBackground';
+import { useT } from '@/lib/i18n';
 
 const initialState = {
   name: "",
   email: "",
   company: "",
-  service: "Salesforce Services",
+  service: "",
   message: "",
 };
 
 export function ContactForm() {
+  const { t } = useT();
   const calendlyUrl =
     process.env.NEXT_PUBLIC_CALENDLY_URL || "https://calendly.com/";
   const [formData, setFormData] = useState(initialState);
@@ -22,7 +25,7 @@ export function ContactForm() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("loading");
-    setFeedback("Sending your inquiry...");
+    setFeedback(t.contact.feedbackSending);
 
     try {
       const response = await fetch("/api/contact", {
@@ -34,41 +37,36 @@ export function ContactForm() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data?.error || "The form could not be submitted.");
+        throw new Error(data?.error || t.contact.feedbackError);
       }
 
       setStatus("success");
-      setFeedback(
-        "Your inquiry was sent successfully. We will follow up from info@nodeanalabs.com."
-      );
+      setFeedback(t.contact.feedbackSuccess);
       setFormData(initialState);
     } catch (error) {
       setStatus("error");
       setFeedback(
-        error instanceof Error ? error.message : "An unexpected error occurred."
+        error instanceof Error ? error.message : t.contact.feedbackUnexpected
       );
     }
   }
 
   return (
     <section className="section section-soft" id="contact">
+      <NeuralBackground dim={0.35} />
       <div className="container contact-grid">
         <div>
-          <div className="eyebrow">Contact</div>
-          <h2>Tell us what you are building, fixing, or trying to improve</h2>
+          <div className="eyebrow">{t.contact.eyebrow}</div>
+          <h2>{t.contact.h2}</h2>
           <p>
-            Share a few details about your company, current challenge, or
-            project scope. Every form submission is delivered directly to{" "}
-            <strong>info@nodeanalabs.com</strong> so you can reply personally
-            and schedule the next step.
+            {t.contact.paragraph}{" "}
+            <strong>info@nodeanalabs.com</strong>{" "}
+            {t.contact.paragraphSuffix}
           </p>
 
           <div className="contact-aside glass-card">
-            <h3>Prefer to book directly?</h3>
-            <p>
-              Open your scheduling page and let qualified leads book a discovery
-              meeting without the back-and-forth.
-            </p>
+            <h3>{t.contact.asideH3}</h3>
+            <p>{t.contact.asideP}</p>
 
             <a
               href={calendlyUrl}
@@ -76,7 +74,7 @@ export function ContactForm() {
               rel="noreferrer"
               className="button button-secondary full-width"
             >
-              Open scheduling page
+              {t.contact.asideBtn}
             </a>
           </div>
         </div>
@@ -84,7 +82,7 @@ export function ContactForm() {
         <form className="contact-form glass-card" onSubmit={handleSubmit}>
           <div className="field-grid">
             <label>
-              Full name
+              {t.contact.labelName}
               <input
                 required
                 value={formData.name}
@@ -96,7 +94,7 @@ export function ContactForm() {
             </label>
 
             <label>
-              Work email
+              {t.contact.labelEmail}
               <input
                 required
                 type="email"
@@ -111,7 +109,7 @@ export function ContactForm() {
 
           <div className="field-grid">
             <label>
-              Company
+              {t.contact.labelCompany}
               <input
                 value={formData.company}
                 onChange={(e) =>
@@ -122,22 +120,24 @@ export function ContactForm() {
             </label>
 
             <label>
-              Service of interest
+              {t.contact.labelService}
               <select
+                required
                 value={formData.service}
                 onChange={(e) =>
                   setFormData({ ...formData, service: e.target.value })
                 }
               >
-                <option>Salesforce Services</option>
-                <option>AI Solutions</option>
-                <option>Strategic Consulting</option>
+                <option value="" disabled>— select one —</option>
+                {t.contact.selectOptions.map((opt) => (
+                  <option key={opt} value={opt}>{opt}</option>
+                ))}
               </select>
             </label>
           </div>
 
           <label>
-            Project details
+            {t.contact.textareaLabel}
             <textarea
               required
               rows={6}
@@ -145,7 +145,7 @@ export function ContactForm() {
               onChange={(e) =>
                 setFormData({ ...formData, message: e.target.value })
               }
-              placeholder="Tell us about your current systems, the challenge you need to solve, and what success should look like."
+              placeholder={t.contact.textareaPlaceholder}
             />
           </label>
 
@@ -154,7 +154,7 @@ export function ContactForm() {
             disabled={status === "loading"}
             type="submit"
           >
-            {status === "loading" ? "Sending..." : "Send inquiry"}
+            {status === "loading" ? t.contact.btnSending : t.contact.btnSend}
           </button>
 
           {feedback ? (

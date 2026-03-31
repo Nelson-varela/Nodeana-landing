@@ -1,31 +1,19 @@
-const footerGroups = [
-  {
-    title: "Services",
-    links: [
-      { label: "Salesforce Services", href: "#services" },
-      { label: "AI Solutions", href: "#services" },
-      { label: "Strategic Consulting", href: "#services" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { label: "Why Nodeana", href: "#why-us" },
-      { label: "How it works", href: "#process" },
-      { label: "Contact", href: "#contact" },
-    ],
-  },
-  {
-    title: "Contact",
-    links: [
-      { label: "info@nodeanalabs.com", href: "mailto:info@nodeanalabs.com" },
-      { label: "Book a discovery call", href: process.env.NEXT_PUBLIC_CALENDLY_URL || "#" },
-      { label: "Chat on WhatsApp", href: "https://wa.me/573197995257?text=Hi%20Nodeana%20Labs,%20I%20have%20a%20question%20about%20your%20services" },
-    ],
-  },
-];
+'use client';
+
+import { useT } from '@/lib/i18n';
 
 export function Footer() {
+  const { t } = useT();
+  const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || '#';
+
+  const footerGroups = t.footer.groups.map((group) => ({
+    ...group,
+    links: group.links.map((link) => ({
+      ...link,
+      href: link.href === '__CALENDLY__' ? calendlyUrl : link.href,
+    })),
+  }));
+
   return (
     <footer className="footer">
       <div className="container footer-shell">
@@ -37,10 +25,7 @@ export function Footer() {
               <span className="brand-labs"> Labs LLC</span>
             </span>
           </a>
-          <p className="footer-copy">
-            Expert Salesforce delivery, applied AI, and strategic consulting for companies
-            building serious digital operations.
-          </p>
+          <p className="footer-copy">{t.footer.tagline}</p>
           <a className="footer-email" href="mailto:info@nodeanalabs.com">
             info@nodeanalabs.com
           </a>
@@ -63,8 +48,8 @@ export function Footer() {
       </div>
 
       <div className="container footer-bottom">
-        <span>© {new Date().getFullYear()} Nodeana Labs LLC. All rights reserved.</span>
-        <span>Built for modern B2B teams. Operated from Colombia. Incorporated in Wyoming.</span>
+        <span>{t.footer.bottomLeft.replace('{year}', String(new Date().getFullYear()))}</span>
+        <span>{t.footer.bottomRight}</span>
       </div>
     </footer>
   );

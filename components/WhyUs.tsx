@@ -1,26 +1,23 @@
-const items = [
-  "Senior practitioners on every engagement — no bait-and-switch with junior resources.",
-  "Deep Salesforce fluency paired with real AI implementation experience.",
-  "Communication that's direct, structured, and free of unnecessary complexity.",
-  "A lean, agile model built for companies that value speed and accountability.",
-];
+'use client';
+
+import { NeuralBackground } from './NeuralBackground';
+import { useT } from '@/lib/i18n';
 
 export function WhyUs() {
+  const { t } = useT();
+
   return (
     <section className="section section-soft" id="why-us">
+      <NeuralBackground dim={0.35} />
       <div className="container split-grid">
         <div>
-          <div className="eyebrow">Why Nodeana</div>
-          <h2>The expertise you need. Without the overhead you don't.</h2>
-          <p>
-            Most consulting engagements fail not because of bad intentions, but because the
-            people solving the problem never fully understood it. At Nodeana Labs, we slow
-            down at the start so we can move fast when it matters.
-          </p>
+          <div className="eyebrow">{t.whyUs.eyebrow}</div>
+          <h2>{t.whyUs.h2}</h2>
+          <p>{t.whyUs.paragraph}</p>
         </div>
 
         <div className="glass-card stacked-list">
-          {items.map((item) => (
+          {t.whyUs.items.map((item) => (
             <div key={item} className="stacked-item">
               <span className="dot" />
               <p>{item}</p>

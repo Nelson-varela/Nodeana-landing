@@ -1,56 +1,54 @@
+'use client';
+
+import { NeuralBackground } from './NeuralBackground';
+import { useT } from '@/lib/i18n';
+
 export function Hero() {
+  const { t } = useT();
+
   return (
     <section className="hero section" id="top">
+      <NeuralBackground />
       <div className="container hero-grid">
         <div className="hero-content">
-          <div className="eyebrow">AI · Salesforce · Consulting</div>
+          <div className="eyebrow">{t.hero.eyebrow}</div>
 
           <h1>
-            AI and Salesforce consulting for companies ready to{" "}
-            <span>scale without the noise.</span>
+            {t.hero.h1a}{" "}
+            <span>{t.hero.h1span}</span>
           </h1>
 
           <p className="hero-copy">
-            Nodeana Labs partners with growth-stage companies to modernize their operations,
-            eliminate broken workflows, and build the digital foundations that actually hold
-            under pressure — through expert Salesforce delivery, applied AI, and senior-level
-            consulting.
+            {t.hero.copy}
           </p>
 
           <div className="hero-actions">
             <a href="#contact" className="button">
-              Start a conversation
+              {t.hero.cta1}
             </a>
             <a href="#services" className="button button-secondary">
-              See what we do
+              {t.hero.cta2}
             </a>
           </div>
 
           <div className="hero-proof">
-            <div>
-              <strong>Senior-level execution</strong>
-              <span>No junior handoffs. Every engagement is led by practitioners who've built real systems.</span>
-            </div>
-            <div>
-              <strong>Outcomes, not deliverables</strong>
-              <span>We measure success by what changes in your operations — not by what we ship.</span>
-            </div>
-            <div>
-              <strong>Built to scale with you</strong>
-              <span>From a focused sprint to a long-term partnership, our model grows as your needs do.</span>
-            </div>
+            {t.hero.proof.map((item) => (
+              <div key={item.title}>
+                <strong>{item.title}</strong>
+                <span>{item.description}</span>
+              </div>
+            ))}
           </div>
         </div>
 
         <div className="hero-card">
           <div className="glass-card hero-panel">
-            <div className="card-tag">The Nodeana approach</div>
-            <h3>Clarity before code. Strategy before systems.</h3>
+            <div className="card-tag">{t.hero.cardTag}</div>
+            <h3>{t.hero.cardH3}</h3>
             <ul className="feature-list">
-              <li>Deep discovery before any solution is proposed</li>
-              <li>Salesforce, AI, and advisory work under one roof</li>
-              <li>Every engagement tied to a measurable business outcome</li>
-              <li>Architecture that supports your next three moves, not just today's problem</li>
+              {t.hero.cardList.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
             </ul>
           </div>
         </div>
