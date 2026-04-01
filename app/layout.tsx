@@ -202,6 +202,29 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             }),
           }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'SiteNavigationElement',
+              name: [
+                'Services',
+                'Why Nodeana',
+                'Process',
+                'FAQ',
+                'Contact',
+              ],
+              url: [
+                `${SITE_URL}/#services`,
+                `${SITE_URL}/#why-us`,
+                `${SITE_URL}/#process`,
+                `${SITE_URL}/#faq`,
+                `${SITE_URL}/#contact`,
+              ],
+            }),
+          }}
+        />
       </head>
       <body>
         <Providers>
