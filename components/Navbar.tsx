@@ -16,7 +16,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock body scroll when menu is open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
@@ -40,8 +39,8 @@ export function Navbar() {
 
           {/* Desktop nav */}
           <nav className="nav" aria-label="Primary">
-            <a href="#services">{t.nav.services}</a>
-            <a href="#why-us">{t.nav.whyNodeana}</a>
+            <a href="#automations" className="nav-highlight">{t.nav.automations}</a>
+            <a href="#services">{t.nav.salesforce}</a>
             <a href="#process">{t.nav.process}</a>
             <a href="#faq">{t.nav.faq}</a>
             <a href="#contact">{t.nav.contact}</a>
@@ -81,7 +80,6 @@ export function Navbar() {
               {t.nav.bookCall}
             </a>
 
-            {/* Hamburger */}
             <button
               className={`hamburger ${menuOpen ? "hamburger--open" : ""}`}
               onClick={() => setMenuOpen((o) => !o)}
@@ -100,8 +98,8 @@ export function Navbar() {
         aria-hidden={!menuOpen}
       >
         <nav className="mobile-nav" onClick={close}>
-          <a href="#services">{t.nav.services}</a>
-          <a href="#why-us">{t.nav.whyNodeana}</a>
+          <a href="#automations" className="nav-highlight">{t.nav.automations}</a>
+          <a href="#services">{t.nav.salesforce}</a>
           <a href="#process">{t.nav.process}</a>
           <a href="#faq">{t.nav.faq}</a>
           <a href="#contact">{t.nav.contact}</a>

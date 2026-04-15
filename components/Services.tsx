@@ -1,14 +1,12 @@
 'use client';
 
-import { NeuralBackground } from './NeuralBackground';
 import { useT } from '@/lib/i18n';
 
 export function Services() {
   const { t } = useT();
 
   return (
-    <section className="section" id="services">
-      <NeuralBackground dim={0.35} />
+    <section className="section section-soft" id="services">
       <div className="container">
         <div className="section-heading">
           <div className="eyebrow">{t.services.eyebrow}</div>
@@ -19,7 +17,7 @@ export function Services() {
         <div className="card-grid four">
           {t.services.items.map((service) => (
             <article key={service.title} className="service-card">
-              <div className="service-icon">◆</div>
+              <div className="service-icon-emoji">{service.icon}</div>
               <h3>{service.title}</h3>
               <p>{service.description}</p>
               <ul className="mini-list">
